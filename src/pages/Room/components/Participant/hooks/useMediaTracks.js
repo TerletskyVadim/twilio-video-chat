@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from 'react';
 
-const Participant = ({ participant }) => {
+const useMediaTracks = (participant) => {
   const [videoTracks, setVideoTracks] = useState([]);
   const [audioTracks, setAudioTracks] = useState([]);
 
@@ -17,23 +17,23 @@ const Participant = ({ participant }) => {
     setAudioTracks(trackpubsToTracks(participant.audioTracks));
 
     const trackSubscribed = (track) => {
-      if (track.kind === "video") {
+      if (track.kind === 'video') {
         setVideoTracks((videoTracks) => [...videoTracks, track]);
-      } else if (track.kind === "audio") {
+      } else if (track.kind === 'audio') {
         setAudioTracks((audioTracks) => [...audioTracks, track]);
       }
     };
 
     const trackUnsubscribed = (track) => {
-      if (track.kind === "video") {
+      if (track.kind === 'video') {
         setVideoTracks((videoTracks) => videoTracks.filter((v) => v !== track));
-      } else if (track.kind === "audio") {
+      } else if (track.kind === 'audio') {
         setAudioTracks((audioTracks) => audioTracks.filter((a) => a !== track));
       }
     };
 
-    participant.on("trackSubscribed", trackSubscribed);
-    participant.on("trackUnsubscribed", trackUnsubscribed);
+    participant.on('trackSubscribed', trackSubscribed);
+    participant.on('trackUnsubscribed', trackUnsubscribed);
 
     return () => {
       setVideoTracks([]);
@@ -62,13 +62,7 @@ const Participant = ({ participant }) => {
     }
   }, [audioTracks]);
 
-  return (
-    <div className="participant">
-      <h3>{participant.identity}</h3>
-      <video ref={videoRef} autoPlay={true} />
-      <audio ref={audioRef} autoPlay={true} />
-    </div>
-  );
+  return [videoRef, audioRef];
 };
 
-export default Participant;
+export default useMediaTracks;

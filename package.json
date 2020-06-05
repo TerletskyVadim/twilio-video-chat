@@ -1,5 +1,5 @@
 {
-  "name": "react-express-starter",
+  "name": "twilio-video-conference",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,7 +10,7 @@
     "twilio-video": "^2.2.0"
   },
   "scripts": {
-    "start": "node server",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -28,6 +28,11 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@reduxjs/toolkit": "^1.3.6",
+    "@testing-library/jest-dom": "^5.9.0",
+    "@testing-library/react": "^10.0.4",
+    "@testing-library/user-event": "^10.4.1",
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-pino-logger": "^4.0.0",
@@ -35,6 +40,8 @@
     "nodemon": "^1.19.4",
     "npm-run-all": "^4.1.5",
     "pino-colada": "^1.5.1",
+    "react-redux": "^7.2.0",
+    "styled-components": "^5.1.0",
     "twilio": "^3.39.5"
   }
 }
